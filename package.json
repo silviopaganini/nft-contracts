@@ -1,0 +1,27 @@
+{
+  "name": "@fluuuid/nft-contracts",
+  "version": "1.0.0",
+  "description": "nft contracts for NFT marketplace prototype",
+  "main": "index.js",
+  "author": "Silvio Paganini <silvio@fluuu.id>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.0.0",
+    "@openzeppelin/truffle-upgrades": "^1.5.0",
+    "@truffle/hdwallet-provider": "^1.2.6",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.1.0",
+    "node-fetch": "^2.6.1",
+    "truffle": "^5.3.1"
+  },
+  "scripts": {
+    "mint": "truffle exec devops/mint.js",
+    "populate": "truffle exec devops/mintPopulateGallery.js",
+    "populate:rinkeby": "truffle exec --network rinkeby devops/mintPopulateGallery.js",
+    "migrate": "truffle migrate --network development --reset",
+    "migrate:populate": "truffle migrate --network development --reset && yarn populate",
+    "migrate:rinkeby": "truffle migrate --network rinkeby --reset"
+  }
+}
