@@ -1,5 +1,5 @@
-require("dotenv").config();
-const HDWalletProvider = require("@truffle/hdwallet-provider");
+require('dotenv').config()
+const HDWalletProvider = require('@truffle/hdwallet-provider')
 
 module.exports = {
   /**
@@ -61,7 +61,7 @@ module.exports = {
           mnemonic: process.env.KEY_MNEMONIC,
           providerOrUrl: `https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
           addressIndex: 0,
-        });
+        })
       },
       network_id: 4,
       gas: 4500000,
@@ -84,7 +84,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "^0.8.0", // Fetch exact version from solc-bin (default: truffle's version)
+      version: '^0.8.0', // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -109,4 +109,4 @@ module.exports = {
   etherscan: {
     apiKey: process.env.APIETHERSCAN,
   },
-};
+}
