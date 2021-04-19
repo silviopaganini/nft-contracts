@@ -44,7 +44,7 @@ const start = async (callback) => {
       mintAssetsOnIPFS.map(async (token) => {
         ipfsURLs.push({
           name: token.name,
-          image: token.path,
+          image: `"https://ipfs.io/ipfs/${token.path}`,
           description: `Description for ${token.name}`,
           external_url: "https://s2paganini.com/",
         });
