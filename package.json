@@ -17,9 +17,8 @@
     "truffle": "^5.3.1"
   },
   "scripts": {
-    "mint": "truffle exec devops/mint.js",
-    "populate": "truffle exec devops/mintPopulateGallery.js",
-    "populate:rinkeby": "truffle exec --network rinkeby devops/mintPopulateGallery.js",
+    "populate": "truffle exec devops/mint.js",
+    "populate:rinkeby": "truffle exec --network rinkeby devops/mint.js",
     "migrate": "truffle migrate --network development --reset",
     "migrate:populate": "truffle migrate --network development --reset && yarn populate",
     "migrate:rinkeby": "truffle migrate --network rinkeby --reset"

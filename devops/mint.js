@@ -11,6 +11,10 @@ const start = async (callback) => {
   try {
     const objectsToBeMinted = [];
 
+    const currentTokens = await (await fetch(`${SERVICE_URL}/token`)).json();
+    const currentIndex = currentTokens.length;
+    const AMOUNT = 10;
+
     const accounts = () =>
       new HDWalletProvider({
         mnemonic: process.env.KEY_MNEMONIC,
@@ -19,7 +23,7 @@ const start = async (callback) => {
 
     const FROM = ethers.utils.getAddress(accounts().getAddresses()[0]);
 
-    for (let i = 1; i < 11; i++) {
+    for (let i = currentIndex; i < currentIndex + AMOUNT; i++) {
       objectsToBeMinted.push(`Robot ${i}`);
     }
 
@@ -40,7 +44,9 @@ const start = async (callback) => {
       mintAssetsOnIPFS.map(async (token) => {
         ipfsURLs.push({
           name: token.name,
-          path: token.path,
+          image: token.path,
+          description: `Description for ${token.name}`,
+          external_url: "https://s2paganini.com/",
         });
         return await contract.mintCollectable(
           FROM,
@@ -55,7 +61,7 @@ const start = async (callback) => {
       })
     );
 
-    console.log(JSON.stringify(ipfsURLs));
+    console.log(JSON.stringify([...currentTokens, ...ipfsURLs]));
 
     callback(
       colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`)
