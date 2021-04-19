@@ -14,11 +14,11 @@ const start = async callback => {
     const FROM = ethers.utils.getAddress(accounts().getAddresses()[0])
     const contract = await NFTT.deployed()
 
-    const response = await contract.setBaseURI('https://api.nft.fluuu.id/prod/token', {
+    const response = await contract.setBaseURI('https://api.nft.fluuu.id/prod/token/', {
       from: FROM,
     })
 
-    callback(response)
+    callback(JSON.stringify(response))
   } catch (e) {
     callback(e)
   }
