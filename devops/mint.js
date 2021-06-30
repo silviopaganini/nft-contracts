@@ -13,7 +13,7 @@ const start = async callback => {
 
     const currentTokens = await (await fetch(`${SERVICE_URL}/token`)).json()
     const currentIndex = currentTokens.length
-    const AMOUNT = 10
+    const AMOUNT = 30
 
     const accounts = () =>
       new HDWalletProvider({
@@ -35,7 +35,7 @@ const start = async callback => {
     ).json()
 
     const contract = await NFTT.deployed()
-    const price = '0.5'
+    const price = '1.5'
 
     const priceWei = utils.parseEther(price)
     const ipfsURLs = []
