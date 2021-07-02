@@ -25,9 +25,6 @@ jobs:
       - name: Truffle Mint
         run: node_modules/.bin/truffle exec devops/test.js --network rinkeby
 
-      - name: Cat
-        run: cat db.ts
-
       - name: Checkout Lambda repo
         uses: actions/checkout@v2
         with:
@@ -35,9 +32,8 @@ jobs:
           path: lambda
 
       - run: |
-          ls
-          # rm lambda/db/index.ts
-          mv ../db.ts lambda/db/index.ts
+          rm lambda/db/index.ts
+          mv db.ts lambda/db/index.ts
           git config user.name github-actions
           git config user.email github-actions@github.com
 
