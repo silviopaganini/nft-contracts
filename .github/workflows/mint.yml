@@ -38,12 +38,9 @@ jobs:
         with:
           repository: silviopaganini/nft-market-service
           path: lambda
-
-      - name: Push changes to Lambda
         run: |
-          rm lambda/db/index.ts
-          mv db.ts lambda/db/index.ts
-          cd lambda
+          rm db/index.ts
+          mv ../db.ts db/index.ts
           git config user.name github-actions
           git config user.email github-actions@github.com
 
