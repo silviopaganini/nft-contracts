@@ -24,6 +24,7 @@ jobs:
           envkey_INFURA_PROJECT_ID: ${{secrets.INFURA_PROJECT_ID}}
           envkey_KEY_MNEMONIC: ${{secrets.KEY_MNEMONIC}}
           envkey_SERVICE_URL: ${{secrets.SERVICE_URL}}
+          envkey_WALLET_PROVIDER_URL: ${{secrets.WALLET_PROVIDER_URL}}
 
       - name: Use the correct Truffle file
         run: |
