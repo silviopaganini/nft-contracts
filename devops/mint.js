@@ -6,6 +6,7 @@ const { utils, ethers } = require('ethers')
 const NFTT = artifacts.require('NFTT.sol')
 const path = require('path')
 const fs = require('fs')
+const { LOADIPHLPAPI } = require('dns')
 
 const { SERVICE_URL } = process.env
 
@@ -58,6 +59,8 @@ const start = async callback => {
 
     const content = `export const tokenProps = ${JSON.stringify([...currentTokens, ...ipfsURLs])}`
 
+    console.log(content)
+
     try {
       const file = path.resolve(__dirname, '../', 'db.ts')
       console.log(file)
@@ -68,6 +71,7 @@ const start = async callback => {
 
     callback(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
   } catch (e) {
+    console.log(e)
     callback(e)
   }
 }
