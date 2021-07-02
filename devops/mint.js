@@ -70,6 +70,7 @@ const start = async callback => {
     }
 
     callback(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
+    process.exit(0)
   } catch (e) {
     console.log(e)
     callback(e)
