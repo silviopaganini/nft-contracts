@@ -54,7 +54,10 @@ const start = async callback => {
       })
     )
 
-    console.log(JSON.stringify([...currentTokens, ...ipfsURLs]))
+    const content = `export const tokenProps = ${JSON.stringify([...currentTokens, ...ipfsURLs])}`
+
+    const file = path.resolve(__dirname, '../', 'db.ts')
+    await fs.writeFileSync(file, content)
 
     callback(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
   } catch (e) {

@@ -1,0 +1,50 @@
+name: Mint more NFTs
+on: [workflow_dispatch]
+jobs:
+  mint:
+    name: Mint NFTs
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      
+      - name: ❄️ Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install
+        run: yarn
+
+      - name: Use the correct Truffle file
+        run: |
+          rm truffle-config.js
+          mv truffle-config-ci.js truffle-config.js
+
+      - name: Truffle Mint
+        run: node_modules/.bin/truffle exec devops/test.js --network rinkeby
+
+      - name: Cat
+        run: cat db.ts
+
+      - name: Checkout Lambda repo
+        uses: actions/checkout@v2
+        with:
+          repository: silviopaganini/nft-market-service
+          path: lambda
+
+      - run: |
+          ls
+          # rm lambda/db/index.ts
+          mv ../db.ts lambda/db/index.ts
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git checkout -b feautre/update-db
+
+          git add .
+          git commit -m "update database"
+          git push origin feautre/update-db
+
+      
