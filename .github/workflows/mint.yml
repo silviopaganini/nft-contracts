@@ -46,9 +46,6 @@ jobs:
           rm db/index.ts
           mv ../db.ts db/index.ts
 
-          git config --global credential.helper store
-          ps: Set-Content -Path "$HOME\.git-credentials" -Value "https://${{secrets.GH_TOKEN}}:x-oauth-basic@github.com`n" -NoNewline
-          
           git config user.name github-actions
           git config user.email github-actions@github.com
 
