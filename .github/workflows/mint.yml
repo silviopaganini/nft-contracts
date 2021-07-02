@@ -36,6 +36,7 @@ jobs:
       - name: Checkout Lambda repo
         uses: actions/checkout@v2
         with:
+          token: ${{secrets.GH_TOKEN}}
           repository: silviopaganini/nft-market-service
           path: lambda
 
