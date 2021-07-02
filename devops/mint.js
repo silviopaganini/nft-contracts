@@ -4,6 +4,8 @@ const colors = require('colors')
 const fetch = require('node-fetch')
 const { utils, ethers } = require('ethers')
 const NFTT = artifacts.require('NFTT.sol')
+const path = require('path')
+const fs = require('fs')
 
 const { SERVICE_URL } = process.env
 
