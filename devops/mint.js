@@ -62,7 +62,8 @@ const start = async callback => {
     const file = path.resolve(__dirname, '../', 'db.ts')
     await fs.writeFileSync(file, content)
 
-    callback(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
+    console.log(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
+    callback()
     process.exit(0)
   } catch (e) {
     console.log(e)
