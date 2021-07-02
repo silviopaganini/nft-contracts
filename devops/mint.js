@@ -15,7 +15,7 @@ const start = async callback => {
 
     const currentTokens = await (await fetch(`${SERVICE_URL}/token`)).json()
     const currentIndex = currentTokens.length
-    const AMOUNT = 30
+    const AMOUNT = 10
 
     const accounts = () =>
       new HDWalletProvider({
@@ -58,8 +58,13 @@ const start = async callback => {
 
     const content = `export const tokenProps = ${JSON.stringify([...currentTokens, ...ipfsURLs])}`
 
-    const file = path.resolve(__dirname, '../', 'db.ts')
-    await fs.writeFileSync(file, content)
+    try {
+      const file = path.resolve(__dirname, '../', 'db.ts')
+      console.log(file)
+      await fs.writeFileSync(file, content)
+    } catch (e) {
+      console.log(e)
+    }
 
     callback(colors.green(`⚡️ Tokens created: ${colors.white(mintedTokens.length)}`))
   } catch (e) {
