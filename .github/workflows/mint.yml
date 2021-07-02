@@ -17,6 +17,13 @@ jobs:
       - name: Install
         run: yarn
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with: 
+          INFURA_PROJECT_ID: ${{secrets.INFURA_PROJECT_ID}}
+          KEY_MNEMONIC: ${{secrets.KEY_MNEMONIC}}
+          SERVICE_URL: ${{secrets.SERVICE_URL}}
+
       - name: Use the correct Truffle file
         run: |
           rm truffle-config.js
@@ -31,7 +38,8 @@ jobs:
           repository: silviopaganini/nft-market-service
           path: lambda
 
-      - run: |
+      - name: Push changes to Lambda
+        run: |
           rm lambda/db/index.ts
           mv db.ts lambda/db/index.ts
           git config user.name github-actions
