@@ -1,20 +1,20 @@
 {
   "name": "@fluuuid/nft-contracts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "nft contracts for NFT marketplace prototype",
   "main": "index.js",
   "author": "Silvio Paganini <silvio@fluuu.id>",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@openzeppelin/contracts-upgradeable": "^4.0.0",
-    "@openzeppelin/truffle-upgrades": "^1.5.0",
-    "@truffle/hdwallet-provider": "^1.2.6",
+    "@openzeppelin/contracts-upgradeable": "^4.1.0",
+    "@openzeppelin/truffle-upgrades": "^1.8.0",
+    "@truffle/hdwallet-provider": "^1.4.1",
     "colors": "^1.4.0",
-    "dotenv": "^8.2.0",
-    "ethers": "^5.1.0",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.4.0",
     "node-fetch": "^2.6.1",
-    "truffle": "^5.3.1"
+    "truffle": "^5.3.13"
   },
   "scripts": {
     "lint": "prettier --write './**/*.{js,jsx,ts,tsx}'",
@@ -25,6 +25,6 @@
     "migrate:rinkeby": "truffle migrate --network rinkeby --reset"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.2"
   }
 }
