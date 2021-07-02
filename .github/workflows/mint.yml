@@ -20,13 +20,13 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1
         with: 
-          INFURA_PROJECT_ID: ${{secrets.INFURA_PROJECT_ID}}
-          KEY_MNEMONIC: ${{secrets.KEY_MNEMONIC}}
-          SERVICE_URL: ${{secrets.SERVICE_URL}}
+          file_name: .env
+          envkey_INFURA_PROJECT_ID: ${{secrets.INFURA_PROJECT_ID}}
+          envkey_KEY_MNEMONIC: ${{secrets.KEY_MNEMONIC}}
+          envkey_SERVICE_URL: ${{secrets.SERVICE_URL}}
 
       - name: Use the correct Truffle file
         run: |
-          cat .env
           rm truffle-config.js
           mv truffle-config-ci.js truffle-config.js
 
