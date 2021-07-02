@@ -26,6 +26,7 @@ jobs:
 
       - name: Use the correct Truffle file
         run: |
+          cat .env
           rm truffle-config.js
           mv truffle-config-ci.js truffle-config.js
 
