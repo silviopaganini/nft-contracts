@@ -1,10 +1,14 @@
 require('dotenv').config()
+const argv = require('minimist')(process.argv.slice(2), { string: ['nfts'] })
+
 const fs = require('fs')
 const path = require('path')
 
 const start = async callback => {
   try {
     const a = [{ a: 1, b: 2, c: 3 }]
+
+    console.log(argv.nfts)
 
     const w = path.resolve(__dirname, '../', 'db.ts')
     const content = `export const tokenProps = ${JSON.stringify(a)}`

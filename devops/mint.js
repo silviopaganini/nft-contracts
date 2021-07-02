@@ -6,7 +6,7 @@ const { utils, ethers } = require('ethers')
 const NFTT = artifacts.require('NFTT.sol')
 const path = require('path')
 const fs = require('fs')
-const { LOADIPHLPAPI } = require('dns')
+const argv = require('minimist')(process.argv.slice(2), { string: ['nfts'] })
 
 const { SERVICE_URL } = process.env
 
@@ -16,7 +16,7 @@ const start = async callback => {
 
     const currentTokens = await (await fetch(`${SERVICE_URL}/token`)).json()
     const currentIndex = currentTokens.length
-    const AMOUNT = 10
+    const AMOUNT = Number(argv.nfts) || 1
 
     const accounts = () =>
       new HDWalletProvider({
