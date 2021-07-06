@@ -20,6 +20,7 @@
   "scripts": {
     "lint": "prettier --write './**/*.{js,jsx,ts,tsx}'",
     "test": "truffle test",
+    "coverage": "truffle run coverage",
     "populate": "truffle exec devops/mint.js",
     "populate:rinkeby": "truffle exec --network rinkeby devops/mint.js",
     "migrate": "truffle migrate --network development --reset",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.12",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "solidity-coverage": "^0.7.16"
   }
 }

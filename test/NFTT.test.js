@@ -104,4 +104,26 @@ contract('NFTT', async accounts => {
     const tokens = await this.contract.getAllOnSale()
     assert.equal(tokens.length, 1)
   })
+
+  it('should change token price', async () => {
+    const newPrice = new BN(2)
+    const tokenId = new BN(1)
+
+    await this.contract.setTokenPrice(tokenId, newPrice, { from: accounts[0] })
+
+    const price = await this.contract.tokenPrice(tokenId)
+
+    assert.equal(price.toString(), newPrice.toString())
+  })
+
+  it('should remove token from sale', async () => {
+    const tokenId = new BN(1)
+    const price = new BN(2)
+
+    await this.contract.setTokenSale(tokenId, false, price, { from: accounts[0] })
+
+    const { sale } = await this.contract.tokenMeta(tokenId)
+
+    assert.equal(sale, false)
+  })
 })

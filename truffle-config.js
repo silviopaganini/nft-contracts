@@ -106,6 +106,8 @@ module.exports = {
   //   enabled: false,
   // },
 
+  plugins: ['solidity-coverage'],
+
   etherscan: {
     apiKey: process.env.APIETHERSCAN,
   },
