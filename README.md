@@ -1,6 +1,6 @@
 # NFT Contracts
 
-![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
+![](https://img.shields.io/badge/Coverage-95.12%25-83A603.svg?prefix=$coverage$)
 ![GitHub](https://img.shields.io/github/license/silviopaganini/nft-contracts?style=round)
 
 NFT Contract used on [NFT Marketplace](https://github.com/silviopaganini/nft-market)
