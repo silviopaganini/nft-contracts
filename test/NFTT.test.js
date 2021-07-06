@@ -1,27 +1,51 @@
 const NFTT = artifacts.require('NFTT')
 const { utils } = require('ethers')
+const { BN, constants, expectEvent, expectRevert } = require('@openzeppelin/test-helpers')
 
 contract('NFTT', async accounts => {
-  it('should deploy contract without error', async () => {
-    await NFTT.deployed()
-    assert.ok(true)
+  beforeEach(async () => {
+    this.contract = await NFTT.deployed()
   })
 
-  it('should mint a token', async () => {
+  it('should mint a token and emmit a Transfer event', async () => {
     const priceWei = utils.parseEther('1.5')
 
-    const contract = await NFTT.deployed()
-    await contract.mintCollectable(accounts[0], '1', 'Token 1', priceWei, true, {
-      from: accounts[0],
-    })
+    const tokenId = new BN(1)
 
-    assert.ok(true)
+    const mintTo = accounts[0]
+    const receipt = await this.contract.mintCollectable(
+      mintTo,
+      tokenId,
+      'Token 1',
+      priceWei,
+      true,
+      {
+        from: mintTo,
+      }
+    )
+
+    expectEvent(receipt, 'Transfer', {
+      from: constants.ZERO_ADDRESS,
+      to: mintTo,
+      tokenId,
+    })
+  })
+
+  it('should revert for transfering to zero address', async () => {
+    const from = accounts[0]
+    const to = constants.ZERO_ADDRESS
+
+    await expectRevert(
+      this.contract.safeTransferFrom(from, to, 1, { from }),
+      'ERC721: transfer to the zero address'
+    )
   })
 
   it('should match token meta', async () => {
-    const contract = await NFTT.deployed()
     const priceWei = utils.parseEther('1.5')
-    const { id, price, name, uri, sale } = await contract.tokenMeta(1)
+    const tokenId = new BN(1)
+
+    const { id, price, name, uri, sale } = await this.contract.tokenMeta(tokenId)
 
     assert.equal(id, '1')
     assert.equal(price, priceWei)
@@ -30,31 +54,54 @@ contract('NFTT', async accounts => {
     assert.equal(sale, true)
   })
 
-  it('should transfer token', async () => {
-    const contract = await NFTT.deployed()
-    const acc1 = accounts[0]
-    const acc2 = accounts[1]
+  it('should transfer token successfully, match new owner and emit a Transfer event', async () => {
+    const from = accounts[0]
+    const to = accounts[1]
 
-    await contract.safeTransferFrom(acc1, acc2, 1, { from: acc1 })
+    const tokenId = new BN(1)
 
-    const ownerNFTT = await contract.ownerOf(1)
-    assert.equal(ownerNFTT, acc2)
+    const receipt = await this.contract.safeTransferFrom(from, to, tokenId, { from })
+
+    const ownerNFTT = await this.contract.ownerOf(tokenId)
+    assert.equal(ownerNFTT, to)
+
+    expectEvent(receipt, 'Transfer', {
+      from,
+      to,
+      tokenId,
+    })
   })
 
   it('should purchase token', async () => {
-    const contract = await NFTT.deployed()
-    const acc1 = accounts[0]
+    const sender = accounts[0]
+    const tokenId = new BN(1)
 
-    await contract.purchaseToken(1, { from: acc1, value: utils.parseEther('1.5') })
-    const newOwner = await contract.ownerOf(1)
+    await this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1.5') })
+    const newOwner = await this.contract.ownerOf(tokenId)
 
-    assert.equal(newOwner, acc1)
+    assert.equal(newOwner, sender)
+  })
+
+  it('should revert for buying already owned token', async () => {
+    const sender = accounts[0]
+    const tokenId = new BN(1)
+
+    await expectRevert.unspecified(
+      this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1.5') })
+    )
+  })
+
+  it('should revert for trying to buy token for less than the set price', async () => {
+    const sender = accounts[1]
+    const tokenId = new BN(1)
+
+    await expectRevert.unspecified(
+      this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1') })
+    )
   })
 
   it('should return all tokens on sale', async () => {
-    const contract = await NFTT.deployed()
-
-    const tokens = await contract.getAllOnSale()
+    const tokens = await this.contract.getAllOnSale()
     assert.equal(tokens.length, 1)
   })
 })
