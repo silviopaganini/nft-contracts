@@ -23,14 +23,8 @@ jobs:
       - name: Install
         run: yarn
 
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with: 
-          file_name: .env
-          envkey_INFURA_PROJECT_ID: ${{secrets.INFURA_PROJECT_ID}}
-          envkey_KEY_MNEMONIC: ${{secrets.KEY_MNEMONIC}}
-          envkey_SERVICE_URL: ${{secrets.SERVICE_URL}}
-          envkey_WALLET_PROVIDER_URL: ${{secrets.WALLET_PROVIDER_URL}}
+      - name: Install CLI
+        uses: dopplerhq/cli-action@v1
 
       - name: Use the correct Truffle file
         run: |
@@ -38,7 +32,7 @@ jobs:
           mv truffle-config-ci.js truffle-config.js
 
       - name: Truffle Mint
-        run: node_modules/.bin/truffle exec devops/mint.js --network rinkeby --nfts ${{ github.event.inputs.name }}
+        run: doppler run --command "node_modules/.bin/truffle exec devops/mint.js --network rinkeby --nfts ${{ github.event.inputs.name }}" --token=${{secrets.DOPPLER_TOKEN}}
 
       - name: Checkout Lambda repo
         uses: actions/checkout@v2
