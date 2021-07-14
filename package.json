@@ -19,7 +19,7 @@
   },
   "scripts": {
     "postinstall": "yarn generate-types",
-    "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
+    "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
     "lint": "prettier --write './**/*.{js,jsx,ts,tsx}'",
     "test": "truffle test",
     "coverage": "truffle run coverage",
