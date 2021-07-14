@@ -1,6 +1,6 @@
 {
   "name": "@fluuuid/nft-contracts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "nft contracts for NFT marketplace prototype",
   "main": "index.js",
   "author": "Silvio Paganini <silvio@fluuu.id>",
@@ -18,6 +18,8 @@
     "truffle": "^5.3.14"
   },
   "scripts": {
+    "postinstall": "yarn generate-types",
+    "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
     "lint": "prettier --write './**/*.{js,jsx,ts,tsx}'",
     "test": "truffle test",
     "coverage": "truffle run coverage",
@@ -29,7 +31,15 @@
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.12",
+    "@typechain/truffle-v5": "^5.0.0",
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^8.2.3",
+    "@types/web3": "^1.2.2",
     "prettier": "^2.3.2",
-    "solidity-coverage": "^0.7.16"
+    "solidity-coverage": "^0.7.16",
+    "ts-node": "^10.1.0",
+    "typechain": "^5.1.1",
+    "typescript": "^4.3.5"
   }
 }

@@ -1,19 +1,21 @@
+import { NFTTInstance } from '../types/truffle-contracts'
+
 const NFTT = artifacts.require('NFTT')
-const { utils } = require('ethers')
 const { BN, constants, expectEvent, expectRevert } = require('@openzeppelin/test-helpers')
+
+let contractInstance: NFTTInstance
 
 contract('NFTT', async accounts => {
   beforeEach(async () => {
-    this.contract = await NFTT.deployed()
+    contractInstance = await NFTT.deployed()
   })
 
   it('should mint a token and emmit a Transfer event', async () => {
-    const priceWei = utils.parseEther('1.5')
-
+    const priceWei = new BN(1.5)
     const tokenId = new BN(1)
 
     const mintTo = accounts[0]
-    const receipt = await this.contract.mintCollectable(
+    const receipt = await contractInstance.mintCollectable(
       mintTo,
       tokenId,
       'Token 1',
@@ -36,18 +38,18 @@ contract('NFTT', async accounts => {
     const to = constants.ZERO_ADDRESS
 
     await expectRevert(
-      this.contract.safeTransferFrom(from, to, 1, { from }),
+      contractInstance.transferFrom(from, to, 1, { from }),
       'ERC721: transfer to the zero address'
     )
   })
 
   it('should match token meta', async () => {
-    const priceWei = utils.parseEther('1.5')
+    const priceWei = new BN(1.5)
     const tokenId = new BN(1)
 
-    const { id, price, name, uri, sale } = await this.contract.tokenMeta(tokenId)
+    const { id, price, name, uri, sale } = await contractInstance.tokenMeta(tokenId)
 
-    assert.equal(id, '1')
+    assert.equal(id, tokenId)
     assert.equal(price, priceWei)
     assert.equal(name, 'Token 1')
     assert.equal(uri, '1')
@@ -60,9 +62,9 @@ contract('NFTT', async accounts => {
 
     const tokenId = new BN(1)
 
-    const receipt = await this.contract.safeTransferFrom(from, to, tokenId, { from })
+    const receipt = await contractInstance.transferFrom(from, to, tokenId, { from })
 
-    const ownerNFTT = await this.contract.ownerOf(tokenId)
+    const ownerNFTT = await contractInstance.ownerOf(tokenId)
     assert.equal(ownerNFTT, to)
 
     expectEvent(receipt, 'Transfer', {
@@ -76,8 +78,8 @@ contract('NFTT', async accounts => {
     const sender = accounts[0]
     const tokenId = new BN(1)
 
-    await this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1.5') })
-    const newOwner = await this.contract.ownerOf(tokenId)
+    await contractInstance.purchaseToken(tokenId, { from: sender, value: new BN(1.5) })
+    const newOwner = await contractInstance.ownerOf(tokenId)
 
     assert.equal(newOwner, sender)
   })
@@ -87,7 +89,7 @@ contract('NFTT', async accounts => {
     const tokenId = new BN(1)
 
     await expectRevert.unspecified(
-      this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1.5') })
+      contractInstance.purchaseToken(tokenId, { from: sender, value: new BN(1.5) })
     )
   })
 
@@ -96,12 +98,12 @@ contract('NFTT', async accounts => {
     const tokenId = new BN(1)
 
     await expectRevert.unspecified(
-      this.contract.purchaseToken(tokenId, { from: sender, value: utils.parseEther('1') })
+      contractInstance.purchaseToken(tokenId, { from: sender, value: new BN(0.1) })
     )
   })
 
   it('should return all tokens on sale', async () => {
-    const tokens = await this.contract.getAllOnSale()
+    const tokens = await contractInstance.getAllOnSale()
     assert.equal(tokens.length, 1)
   })
 
@@ -109,9 +111,9 @@ contract('NFTT', async accounts => {
     const newPrice = new BN(2)
     const tokenId = new BN(1)
 
-    await this.contract.setTokenPrice(tokenId, newPrice, { from: accounts[0] })
+    await contractInstance.setTokenPrice(tokenId, newPrice, { from: accounts[0] })
 
-    const price = await this.contract.tokenPrice(tokenId)
+    const price = await contractInstance.tokenPrice(tokenId)
 
     assert.equal(price.toString(), newPrice.toString())
   })
@@ -120,9 +122,9 @@ contract('NFTT', async accounts => {
     const tokenId = new BN(1)
     const price = new BN(2)
 
-    await this.contract.setTokenSale(tokenId, false, price, { from: accounts[0] })
+    await contractInstance.setTokenSale(tokenId, false, price, { from: accounts[0] })
 
-    const { sale } = await this.contract.tokenMeta(tokenId)
+    const { sale } = await contractInstance.tokenMeta(tokenId)
 
     assert.equal(sale, false)
   })

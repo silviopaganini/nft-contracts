@@ -1,8 +1,8 @@
 {
   "manifestVersion": "3.2",
   "admin": {
-    "address": "0xB458ce9194648Af70BC0238b64E9d47A2F11a7cf",
-    "txHash": "0xb5c12fe4f49575b6ea4d6ba8d0c459aedb82e219db26382d337c6e3d67a10dcf"
+    "address": "0x6BE98b2A9E0325d38CDDe0D1329E4B5c6d877D9C",
+    "txHash": "0xab8f7ef08aa83905e3eaeeffe1305d7e70608057322e721f5c90b3d850cee816"
   },
   "proxies": [
     {
@@ -293,6 +293,96 @@
     {
       "address": "0x22B91767301F666b78e440d3eec3f36262b72128",
       "txHash": "0xf2b0298ef9d8baaf4b40a9a627a8edec78fb7e8b5d120c21e0ee415445a6ab28",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA25Cd6647e535983C5E870701A68CD64826aeeD9",
+      "txHash": "0xdfaf5be27549ee2902747a21e7e9d82e99967bb5d149275199b5bba7b0b11ad5",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x501fcDd42EafFAEdd19cEaa2986294c2A614bf6b",
+      "txHash": "0xf6fa007fe4027b9ec963b1a24410d8d6fa8c52ef1d5380a4c7c5005740e74d1e",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xBB7Fd7345ACCD391ad644A0628904541DbDE15e1",
+      "txHash": "0xc33d000fcb2ea3862afc67203047426aba9ed5003243f1d645ae8c1a423efcb8",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x6020DdcAb08F77a01B2aC15ed19c446049952B3a",
+      "txHash": "0xd298a17942aad6cd49707ef3ab4a882cb54d64e6a15cdc5ee7435e71015b5389",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xaE1Fc68178D6a0748738d2bfe244d959576310FC",
+      "txHash": "0x41938b9689a14824e15201a81c38cd00e8b68f584b2239170bc83cb85e3453cc",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xB3F043df357823BD81297E0e7a943ab336BFBef9",
+      "txHash": "0x5dc7ac717adf0d9fbbc2310a374b892631b829d872e6a109891b50e6d33ebb0b",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x8801A00D915f213f29B939C153bCf2A8fa8C09e0",
+      "txHash": "0xcb45577b3dbc8348fabe25a4426439128caaa7f1abbb8bea6666db34a4119009",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xcB9a7EAC4095DFF4E1DC08A33f3EBBc9FE02d829",
+      "txHash": "0x5738c930c2e2ca57e393580c48b9a345c7ff90dc2eeccb10f2b2b318a75d2eff",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xF2D1C006FB228D4e8f1a5538C304da8f336eBF65",
+      "txHash": "0xec5bf3c6df2c100eb5a5afdbe250522977ef99232ccb524b8e4de80c99dc98ea",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x9F1f1bBb4b61302e5D0624f21e7c2C04F9481619",
+      "txHash": "0x2bf9d9b827aaf1f3d15a42a28c3c4ee2077282dfba2eacffa370d5cbdeacecc0",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA6D41f834eec90a6f470892867B6F8097cff0c8A",
+      "txHash": "0xdea74103877f1f21510f17f48f0b6d56fbdfd975bb1b0324a7168103aa64292f",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x69A88433cB5d5Df25db7598CCaA21daEbB7972CE",
+      "txHash": "0xb8bd7f60295d62609cc4278ceaf4c56fbc9da0c7445a5b9ceafe8e1ffca32737",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x0742a81916527Ace2ed9CDdF810fEe263d8633A7",
+      "txHash": "0x6da351b28abefb3e613dc2a3284c08c92b0c949025cd93de446d9dc43584c5bc",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA7c96f7F6993B7767216C84A1A2531F4ff84c702",
+      "txHash": "0xd2494d86107dd2b62322a8c7f0190228eb1ab4afcfac73489ac33bd70149114d",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xc4d930f75B7B192B98D850e5F2052C0DfedC03c8",
+      "txHash": "0x729613d5d8ce7154a0ca97d81595867863994cb0b9ccd0f9f070034e0e091152",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x4326636112f518483453fB883D56e714d41643Be",
+      "txHash": "0x529286f2217c96e099ca8a5e8fd6091b6afe4a01909b9cb73fcbb4b318e70edb",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xec5d987Ce17462d7D2deC149A55526f1fD09c006",
+      "txHash": "0x1e637b4e0659b92d5732a99188597b284694a92c97fc140c1dba2bafd07eb34d",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x2727f9c24990302ee4416d5E003048bA2d934383",
+      "txHash": "0x623e5b182ce75521b4e577ef6c04e0b1b1d8925efae0e2f84204205277dc9f40",
       "kind": "transparent"
     }
   ],

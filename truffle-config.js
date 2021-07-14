@@ -1,6 +1,10 @@
 require('dotenv').config()
 const HDWalletProvider = require('@truffle/hdwallet-provider')
 
+require('ts-node').register({
+  files: true,
+})
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
