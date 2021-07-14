@@ -13,7 +13,6 @@
     "@types/bn.js": "^5.1.0",
     "@types/chai": "^4.2.21",
     "@types/mocha": "^8.2.3",
-    "@types/web3": "^1.2.2",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "ethers": "^5.4.1",
