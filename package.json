@@ -24,7 +24,6 @@
     "@typechain/truffle-v5": "^5.0.0"
   },
   "scripts": {
-    "postinstall": "yarn generate-types",
     "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
     "lint": "prettier --write './**/*.{js,jsx,ts,tsx}'",
     "test": "truffle test",
