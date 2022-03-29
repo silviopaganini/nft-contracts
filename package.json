@@ -16,7 +16,7 @@
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "ethers": "^5.4.1",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "node-fetch": "^2.6.1",
     "truffle": "^5.3.14"
   },
